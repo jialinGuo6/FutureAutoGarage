@@ -17,7 +17,7 @@ FutureAutoGarage/                    # ✅ Git 仓库根目录
 │   │   └── templates/               # ✅
 │   ├── db.sqlite3                   # ❌ 被 .gitignore 排除, SQLite数据库文件
 │   └── media/                       # ❌ 被 .gitignore 排除, admin管理员/用户上传媒体文件目录
-└── MyNote.txt, ReadMe.txt           # ✅ 备注文档等不影响代码结构的文件
+└── MyNote.txt, ReadMe.txt           # ✅ 备注文档, 我的笔记等不影响代码结构的文件
 
 Tire Data:
 winterTire:
