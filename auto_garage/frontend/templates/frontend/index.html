@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Future Auto Garage</title>
+    {% load static %}    <!-- Custom Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/myIcon.ico' %}">
+    <!-- Material UI Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
+   
+    </head>
+<body>
+    <!-- 1. 前后端不分离（Django Template模板 + React 混合: 
+            ==> 让 Django 继续管理页面框架, 用嵌套的 <div id="main"><div id="app"></div>
+         2. 前后端分离：小型或纯前端 React 项目（简洁、现代化、React 完全控制 
+            ==>只用 <div id="app"></div>
+    -->
+    <div id="main">
+        <!-- React will mount here -->
+        <div id="app"></div>
+    </div>
+
+    <!-- Webpack bundled JS -->
+    <script src="{% static "frontend/main.js" %}"></script>
+</body>
+</html>

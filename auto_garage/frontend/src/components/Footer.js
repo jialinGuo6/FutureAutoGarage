@@ -1,0 +1,28 @@
+/**
+ * FutureAutoGarage - Footer Component - 网站底部信息
+ * 
+ * Author: Jialin Guo
+ * Created: 2025-11-03
+ * Last Updated: 2025-11-04
+ * 
+ * 包含社交媒体链接、关于我们和版权信息
+ */
+import { Box, Typography, Container, Link } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
+
+export default function Footer() {
+    return (
+        <Box component="footer" className="footer-box" sx={{ mt: 6 }}>
+            {/* 链接区域 */}
+            <Typography variant="body2" align="center" sx={{ mb: 0.5, fontSize: '16px', fontWeight: 'bold' }}>
+                <Link href="https://www.facebook.com/NAPASJ/" target="_blank" sx={{ color: 'inherit', mr: 2, textDecoration: 'none' }}>Facebook</Link>
+                <Link component={RouterLink} to="/contact-location" sx={{ color: 'inherit', mr: 2, textDecoration: 'none' }}>Contacet us</Link>
+                <Link href="https://www.blackcircles.ca/en/garages/ca/new-brunswick/saint-john/196041-future-auto-garage" target="_blank" sx={{ color: 'inherit', textDecoration: 'none' }}>Blackcircles.ca</Link>      
+            </Typography>
+            {/* 网站更新日期 */}
+            <Typography variant="body2" align="center" sx={{ mt: 0.5 }}>
+                 © 2025 Future Auto Garage. All rights reserved.
+            </Typography>
+        </Box>
+    );
+}
