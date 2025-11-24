@@ -1,3 +1,4 @@
+Project Structure:
 FutureAutoGarage/                    # ✅ Git 仓库根目录
 ├── .gitignore                       # ✅ 应该在这里
 ├── requirements.txt                 # ✅ Python依赖清单
