@@ -6,8 +6,8 @@ FutureAutoGarage/                    # ✅ Git 仓库根目录
 │   ├── auto_garage_project/         # ✅ 主项目目录（管理配置等）
 │   ├── frontend/                    # ✅ React + Django app, React 代码目录（结合于Django管理）
 │   │   ├── node_modules/            # ❌ 被 .gitignore 排除
-│   │   ├── src/                     # ✅
-│   │   ├── static/                  # ✅
+│   │   ├── src/                     # ✅ React代码
+│   │   ├── static/                  # ✅ 静态CSS,IMAGE, 系统生成的main.js
 │   │   └── templates/               # ✅
 │   ├── db.sqlite3                   # ❌ 被 .gitignore 排除, SQLite数据库文件
 │   └── media/                       # ❌ 被 .gitignore 排除, admin管理员/用户上传媒体文件目录
