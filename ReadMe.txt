@@ -13,7 +13,7 @@ FutureAutoGarage/                    # ✅ Git 仓库根目录
 │   └── media/                       # ❌ 被 .gitignore 排除, admin管理员/用户上传媒体文件目录
 └── MyNote.txt, ReadMe.txt           # ✅ 备注文档等不影响代码结构的文件
 
-
+预计介绍。。。。。。
 前端页面结构
 后端页面结构
 
