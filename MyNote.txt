@@ -206,8 +206,13 @@ Git 跟踪的文件：
 git remote add origin https://github.com/jialinGuo6/FutureAutoGarage.git
 # 2. 重命名分支为 main（GitHub 默认分支名）
 git branch -M main
-# 3. 推送到 GitHub
+# 3. 推送到 GitHub(这部分非常重要你要注意它)
 git push -u origin main
+    # 如果失败可能一： Git 的 buffer 太小 + 网络波动。
+    appledeMacBook-Pro:FutureAutoGarage apple$ git config --global http.postBuffer 524288000
+    appledeMacBook-Pro:FutureAutoGarage apple$ git config --global http.maxRequestBuffer 1000M
+    appledeMacBook-Pro:FutureAutoGarage apple$ git push origin main
+    # 失败可能二：大于 100MB
 
 
 10. 在服务器上获取代码（我器呢？）
