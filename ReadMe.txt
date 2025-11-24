@@ -1,3 +1,5 @@
+Project Name:FutureAutoGarage WebSite With 'Python Django+React+SQLite3'
+FutureAutoGarage Size: 16MB
 Project Structure:
 FutureAutoGarage/                    # ✅ Git 仓库根目录
 ├── .gitignore                       # ✅ 应该在这里
