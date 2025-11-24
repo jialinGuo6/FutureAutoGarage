@@ -1,6 +1,7 @@
-Project Name:FutureAutoGarage WebSite With 'Python Django+React+SQLite3'
-Upload Date: Nov 24,2025
-FutureAutoGarage Size: 16MB
+Project Name: FutureAutoGarage Website With 'Python Django+React+SQLite3'
+Upload Date: Nov 24, 2025
+Size: 16MB
+FutureAutoGarage Facebook: https://www.facebook.com/NAPASJ/
 
 Project Structure:
 FutureAutoGarage/                    # ✅ Git 仓库根目录
@@ -17,6 +18,12 @@ FutureAutoGarage/                    # ✅ Git 仓库根目录
 │   ├── db.sqlite3                   # ❌ 被 .gitignore 排除, SQLite数据库文件
 │   └── media/                       # ❌ 被 .gitignore 排除, admin管理员/用户上传媒体文件目录
 └── MyNote.txt, ReadMe.txt           # ✅ 备注文档等不影响代码结构的文件
+
+Tire Data:
+winterTire:
+https://docs.google.com/spreadsheets/d/1msRHnS3gKHN1IGNTzDeuursyrTKF4PXoWn_v9cnD-2U/edit?gid=1660833820#gid=1660833820
+allSeasonTire:
+https://docs.google.com/spreadsheets/d/1K270MJUMYaFQhxAvObNoWePWZf6qRWBvpKeA53lMQ-M/edit?gid=1206133292#gid=1206133292
 
 预计介绍。。。。。。
 前端页面结构
