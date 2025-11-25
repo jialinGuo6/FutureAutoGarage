@@ -1,11 +1,15 @@
 /**
- * CarShowPics Component - 轮胎图片展示
- *
- * 功能：
- * - 根据父组件传入的 tireId 请求图片
- * - 若 tireId 为空显示默认图片
- * - 提供左右轮播、缩略图导航和图片计数显示
- * - 样式优化，提升专业感和可读性
+ * CarShowPics Component - 图片展示
+ * Author: Jialin Guo
+ * Description: This is a component for displaying images.
+ * - According to the tireId received from the parent component, request images. 根据父组件传入的 tireId 请求图片
+ * - If tireId is empty, display default images. 若 tireId 为空显示默认图片
+ * - Provide left and right scrolling, thumbnail navigation, and image count display. 提供左右轮播、缩略图导航和图片计数显示
+ * Used in Page:
+ * - AllSeasonTires (/pages/AllSeasonTires.js)
+ * - WinterTires (/pages/WinterTires.js)
+ * - ProductRearView (/pages/ProductRearView.js)
+ * - ProductLights (/pages/ProductLights.js)
  */
 
 import { useState, useEffect } from 'react';
@@ -21,13 +25,12 @@ export default function CarShowPics({ tireId, defaultImages}) {
   const { showLoading, hideLoading } = useLoading();
 
   /**
-   * 当 tireId 变化时加载图片
-   * - tireId 为空显示默认图片
-   * - tireId 有值则请求接口获取对应轮胎图片
+   * When tireId changes, load images  当 tireId 变化时加载图片
+   * - If tireId is empty, display default images - tireId 为空显示默认图片
+   * - If tireId is not empty, request the interface to get the corresponding tire images - tireId 有值则请求接口获取对应轮胎图片 
    */
   useEffect(() => {
     if (!tireId) {
-      // 使用默认图片
       setImages(defaultImages.map((src, i) => ({
         id: i,
         image: src,
@@ -60,13 +63,13 @@ export default function CarShowPics({ tireId, defaultImages}) {
     fetchImages();
   }, [tireId]);
 
-  /** 切换到下一张图片 */
+  /** Change to the next image */
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
 
-  /** 切换到上一张图片 */
+  /** Change to the previous image */
   const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  /** 异常显示 */
+  /** Error or no images available to display */
   if (error) {
     return (
       <Paper elevation={3} sx={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', mb: 3 }}>
@@ -76,7 +79,7 @@ export default function CarShowPics({ tireId, defaultImages}) {
     );
   }
 
-  /** 图片为空时显示提示 */
+  /** If there are no images to display */
   if (images.length === 0) {
     return (
       <Paper elevation={3} sx={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', mb: 3 }}>
@@ -97,7 +100,7 @@ export default function CarShowPics({ tireId, defaultImages}) {
       overflow: 'hidden',
       backgroundColor: '#f9f9f9'
     }}>
-      {/* 中央图片 */}
+      {/* Display the current image */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
         <img
           src={images[currentImageIndex].image}
@@ -106,7 +109,7 @@ export default function CarShowPics({ tireId, defaultImages}) {
         />
       </Box>
 
-      {/* 左右轮播按钮 */}
+      {/* Left and right scrolling */}
       {images.length > 1 && (
         <>
           <IconButton
@@ -140,7 +143,7 @@ export default function CarShowPics({ tireId, defaultImages}) {
         </>
       )}
 
-      {/* 图片计数显示 */}
+      {/* Image count */}
       <Typography variant="caption" sx={{
         position: 'absolute',
         top: 10,
@@ -153,7 +156,7 @@ export default function CarShowPics({ tireId, defaultImages}) {
         {currentImageIndex + 1} / {images.length}
       </Typography>
 
-      {/* 可选：缩略图导航条 */}
+      {/* Option: The thumbnail navigation bar 缩略图导航条*/}
       <Box sx={{
         position: 'absolute',
         bottom: 0,

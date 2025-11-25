@@ -31,3 +31,7 @@ __pycache__/
 
 # 你的个人笔记文件（可选）
 MyNote.md
+MyNote.txt
+
+# 不需要的代码
+trash/

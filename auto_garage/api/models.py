@@ -1,9 +1,7 @@
 """
 FutureAutoGarage - Data Models
-
 Author: Jialin Guo
 Created: 2025-11-03
-Last Updated: 2025-11-20
 Description: Database model definitions using Django ORM.
              Defines database table structures, field types, relationships, and constraints.
 
@@ -73,8 +71,8 @@ def tire_image_upload_path(instance, filename):
     return os.path.join(folder_name, new_filename)
 
 class TireImage(models.Model):
-    # models.ForeignKey用来定义外键，关联Tire，on_delete=models.CASCADE表示删除时级联删除，related_name='images'表示反向关联
-    # models.ForeignKey is used to define foreign keys, related to Tire, on_delete=models.CASCADE means cascade deletion when deleting, related_name='images' means reverse association
+    """models.ForeignKey is used to define foreign keys, related to Tire, 
+    on_delete=models.CASCADE means cascade deletion when deleting, related_name='images' means reverse association"""
     tire = models.ForeignKey(Tire, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField( # User/manager upload files
         upload_to=tire_image_upload_path,

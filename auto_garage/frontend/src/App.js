@@ -46,20 +46,11 @@ import ContactLocation from "./pages/ContactLocation";
 import Products from "./pages/ProductLights";
 import ProductRearView from "./pages/ProductRearView";
 import FAQ from "./pages/FAQ";
-/**
- * Main App Component
- * 
- * This component serves as the root of the React application and sets up:
- * - Global theme provider for consistent styling
- * - Loading context for application-wide loading states
- * - Router for navigation and routing capabilities
- * - Main layout structure with header, content area, and footer
- * 
- * The component uses a flexbox layout to ensure proper spacing and responsiveness
- * across different screen sizes.
- * 
- * @returns {JSX.Element} The fully configured application root element
- */
+/* Main layout structure 
+  - Header Component
+  - Main content area (HomePage)
+  - Footer Component
+*/
 export default function App() {
   return (
     // ThemeProvider applies the custom Material-UI theme to all child components
@@ -68,19 +59,13 @@ export default function App() {
       <LoadingProvider>
         {/* Router enables client-side routing for single-page application behavior */}
         <Router>
-           {/* Main layout structure 
-               - Header Component
-               - Main content area (HomePage)
-               - Footer Component
-             */}
           <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            {/* Header stays at the top */}
+            {/* Header Component - Header stays at the top */}
             <Header />
             {/* Main content area (takes up remaining space) */}
             <Box component="main" sx={{ flexGrow: 1, mt: 13 }}>
-        
                 <Routes>
-                    {/* 应用路由配置 */}
+                    {/* Application routing configuration */}
                     <Route path="/"  element={<HomePage />} />
                     <Route path="/all-season-tires" element={<AllSeasonTires />} />
                     <Route path="/winter-tires" element={<WinterTires />} />
@@ -91,19 +76,11 @@ export default function App() {
                     <Route path="/product-lights" element={<Products />} />
                     <Route path="/product-rear-view" element={<ProductRearView />} />
                     <Route path="/faq" element={<FAQ />} />
-                    
-                    {/* 音乐控制器 
-                    <Route path="/create-room" element={<CreateRoomPage />} />
-                    <Route path="/join-room" element={<RoomJoinPage />} />
-                    <Route path="/active-rooms" element={<ActiveRoomsPage />} />
-                    <Route path="/room/:code" element={<Room />} />*/}
                 </Routes>
             </Box>
-
-            {/* Footer always at bottom */}
+            {/* Footer Component - Footer always at bottom */}
             <Footer />
           </Box>
-
         </Router>
       </LoadingProvider>
     </ThemeProvider>

@@ -3,7 +3,6 @@ FutureAutoGarage - Admin Configuration
 
 Author: Jialin Guo
 Created: 2025-11-03
-Last Updated: 2025-11-04
 Description: Django admin interface configuration for model registration and management.
              Provides web-based administrative interface for database operations.
 Admin URL: http://127.0.0.1:8000/admin/
@@ -16,15 +15,15 @@ from django.contrib import admin
 from .models import Tire, TireImage
 from import_export.admin import ImportExportModelAdmin
 from .resources import TireResource
-# TireImageInline可以用于在TireAdmin中显示TireImage，例如，在TireAdmin中显示4个图片上传框。与下方TireImageAdmin的功能相同
+# TireImageInline can be used to display TireImage in TireAdmin, for example, displaying 4 image upload boxes in TireAdmin
 class TireImageInline(admin.TabularInline):
     model = TireImage
-    extra = 4  # 默认显示4个图片上传框
-    # 可选：限制最大图片数量
-    # max_num = 5
+    extra = 4  # default show 4 image upload boxes
+    # max_num = 5   # optional: limit the maximum number of images
 
 @admin.register(Tire)
 class TireAdmin(ImportExportModelAdmin):
+    # Use resource.py to define the import/export fields
     resource_class = TireResource
     """Admin interface configuration for Tire model.
     
@@ -37,9 +36,9 @@ class TireAdmin(ImportExportModelAdmin):
     list_filter = ['tire_type', 'rim_size', 'brand', 'stocked_at']
     search_fields = ['size', 'brand', 'tread_pattern']
     ordering = ['tire_type', 'rim_size', 'size']
-    inlines = [TireImageInline]  # 添加这行！
+    inlines = [TireImageInline]  # Here you can add TireImageInline
 
-# 可选：单独注册 TireImage（如果你想单独管理图片）
+# option: register TireImage separately(if you want to manage images separately)
 @admin.register(TireImage)
 class TireImageAdmin(admin.ModelAdmin):
     list_display = ['tire', 'image', 'id']

@@ -3,7 +3,6 @@ FutureAutoGarage - App Configuration
 
 Author: Jialin Guo
 Created: 2025-11-03
-Last Updated: 2025-11-04
 Description: Django application configuration and initialization settings.
              Defines app metadata, default field types, and startup behavior.
 

@@ -2,11 +2,8 @@
  * FutureAutoGarage - FAQ Page
  * Author: Jialin Guo
  * Created: 2025-11-07
- *
- * 美化版本 - FAQ 页面
- * 视觉风格：简约现代、蓝灰配色，轻阴影与圆角
+ * Description: FAQ Page for Future Auto Garage
  */
-
 import React from 'react';
 import {
   Container,
@@ -21,12 +18,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 export default function FAQ() {
   return (
     <Container maxWidth="md" sx={{ py: 6 }}>
-      {/* 标题 */}
+      {/* Title */}
       <Typography variant="h4" component="h1" sx={{ marginBottom: '24px', textAlign: 'center', color: '#2c3e50', fontWeight: 600 }}>     
         Frequently Asked Questions
       </Typography>
 
-      {/* 简短说明 */}
+      {/* Short explanation */}
       <Typography
         variant="body1"
         align="center"
@@ -35,7 +32,7 @@ export default function FAQ() {
         Answers to common questions about our services, tires, and customer care.
       </Typography>
 
-      {/* FAQ 分组函数 */}
+      {/* The FAQ grouping function - FAQ 分组函数*/}
       {[
         {
           title: 'General',
@@ -107,7 +104,7 @@ export default function FAQ() {
         },
       ].map((section, idx) => (
         <Box key={idx} sx={{ mb: 6 }}>
-          {/* 分组标题 */}
+          {/* Title of each group */}
           <Typography
             variant="h5"
             sx={{
@@ -123,7 +120,7 @@ export default function FAQ() {
             {section.title}
           </Typography>
 
-          {/* 每个问题 */}
+          {/* Each question */}
           {section.items.map((item, i) => (
             <Accordion
               key={i}

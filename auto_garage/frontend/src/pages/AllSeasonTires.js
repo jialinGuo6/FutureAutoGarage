@@ -1,11 +1,12 @@
 /**
  * FutureAutoGarage - AllSeasonTires Component - 通用季节轮胎
- * 
  * Author: Jialin Guo
  * Created: 2025-11-03
- * Last Updated: 2025-11-04
- * 
- * 导航栏中轮胎的子页面，展示通用季节轮胎的信息。（与WinterTires除了数据不同外，其他部分相同。)
+ * Description:
+ * - Maintain the currently selected tire ID
+ * - Render the CarShowPics image component
+ * - Render the TireCategoryPage table component
+ * - Pass the selected ID to the child component via the onSelectTire callback
  */
 import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
@@ -17,7 +18,6 @@ export default function AllSeasonTires() {
 
   return (
     <Box sx={{ marginTop: '-20px' }}>
-      {/* 页面标题 */}
       <Typography variant="h4" sx={{ mb: 4, textAlign: 'center', color: '#2c3e50', fontWeight: 600 }}>
         All-Season Tires
       </Typography>
@@ -26,7 +26,6 @@ export default function AllSeasonTires() {
         defaultImages={['/media/all_season_tire0.png']}
       />
 
-      {/* 简短用户说明 */}
       <Typography
         variant="body2"
         sx={{
@@ -40,9 +39,9 @@ export default function AllSeasonTires() {
       </Typography>
 
       <TireCategoryPage
-        api_interface="/api/tires/all-season/"    // 后端接口地址
-        selectedTireId={selectedTireId}         // 传入当前选中项（用于表格高亮）
-        onSelectTire={(id) => setSelectedTireId(id)} // 点击行更新选中 ID
+        api_interface="/api/tires/all-season/"        // backend interface  后端接口地址
+        selectedTireId={selectedTireId}               // send the currently selected item(for table highlighting) 传入当前选中项（用于表格高亮）
+        onSelectTire={(id) => setSelectedTireId(id)}  // update selected ID when a row is clicked 点击行更新选中 ID
       />
     </Box>
   );

@@ -23,7 +23,7 @@ urlpatterns = [
     path('', include('frontend.urls')), # Because the frontend has it own urls. The forward-facing that will user can see. And api is just for data exchange user can't see.
 ]
 
-#媒体文件,只在开发环境下使用
+#媒体文件,只在开发环境下使用 media file, only used in development
 from django.conf import settings
 from django.conf.urls.static import static
 if settings.DEBUG:

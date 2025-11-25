@@ -1,51 +1,59 @@
 /**
  * FutureAutoGarage - Header Component - 网站头部导航
- * 
  * Author: Jialin Guo
  * Created: 2025-11-03
- * Last Updated: 2025-11-04
+ * Description: The header section of the website, including the logo and main navigation menu.
+ * Used in Page: App.js(/src/App.js)
+ * Structure:
+ * 
+ *   Logo Image                                                             Information Image
+ *   ┌────┬────────────────┬────────────────┬───────────────────┐──────────┐────────────┐────┐
+ *   |Home|   Services ▾   |     Tires ▾    |     Products ▾    | About Us | Contact Us | FAQ|
+ *   └────┴────────────────┴────────────────┴───────────────────┘──────────┘────────────┘────┘
+ *        ├ Auto Repairs   ├ AllSeasonTires ├ Product Lights    |
+ *        ├ Car Maintenance├ WinterTires    ├ Product Rear View |
+ *        └────────────────┴────────────────┴───────────────────┘
  * 
  * 包含Logo图片展示区和主导航菜单，支持下拉菜单功能
  */
 import { AppBar, Toolbar, Button, Box, Menu, MenuItem } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-
 export default function Header() {
-    // 下拉菜单状态管理
+    // 下拉菜单状态管理 Manage the state of the dropdown menu
     const [tireAnchorEl, setTireAnchorEl] = useState(null);
     const [serviceAnchorEl, setServiceAnchorEl] = useState(null);
     const [productAnchorEl, setProductAnchorEl] = useState(null);
     const tireOpen = Boolean(tireAnchorEl);
     const serviceOpen = Boolean(serviceAnchorEl);
     const productOpen = Boolean(productAnchorEl);
-    // 打开轮胎下拉菜单
+    // 打开轮胎下拉菜单 Open the tire dropdown menu
     const handleTireClick = (event) => {
         setServiceAnchorEl(null);
         setTireAnchorEl(event.currentTarget);
         setProductAnchorEl(null);
     };
-    // 打开服务下拉菜单
+    // 打开服务下拉菜单 Open the service dropdown menu
     const handleServiceClick = (event) => {
         setTireAnchorEl(null);
         setServiceAnchorEl(event.currentTarget);
         setProductAnchorEl(null);
     };
-    // 打开产品下拉菜单
+    // 打开产品下拉菜单 Open the product dropdown menu
     const handleProductClick = (event) => {
         setTireAnchorEl(null);
         setServiceAnchorEl(null);
         setProductAnchorEl(event.currentTarget);
     }
-    // 关闭轮胎下拉菜单
+    // 关闭轮胎下拉菜单 Close the tire dropdown menu
     const handleTireClose = () => {
         setTireAnchorEl(null);
     };
-    // 关闭服务下拉菜单
+    // 关闭服务下拉菜单 Close the service dropdown menu
     const handleServiceClose = () => {
         setServiceAnchorEl(null);
     };
-    //关闭产品下拉菜单
+    //关闭产品下拉菜单 Close the product dropdown menu
     const handleProductClose = () => {
         setProductAnchorEl(null);
     };
@@ -61,7 +69,7 @@ export default function Header() {
             backgroundColor: 'transparent',
             borderBottom: '1px solid #E0E0E0'
         }}>
-            {/* 左侧Logo组 */}
+            {/* Left Logo Images */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <img 
                     src="/static/images/logo_s.png" 
@@ -74,7 +82,7 @@ export default function Header() {
                     style={{ height: '20px' }}
                 />
             </Box>
-            {/* 右侧联系信息 */}
+            {/* Right Contact Information */}
             <img 
                 src="/static/images/contact_info.png" 
                 alt="Contact Info" 
@@ -82,15 +90,15 @@ export default function Header() {
             />
         </Box>
         
-        {/* 导航栏 */}
+        {/* Navigation Bar */}
         <AppBar position="static" sx={{ top: 54, zIndex: 1100 }}>
             <Toolbar sx={{ minHeight: '48px !important', justifyContent: 'center' }}>
                 <Box sx={{ display: 'flex', gap: 2 }}>
                     <Button color="inherit" component={Link} to="/">
                         Home
                     </Button>
-
-                    {/* 服务下拉菜单 */}
+                    
+                    {/* Service Drop-down menu  服务下拉菜单 */}
                     <Button color="inherit" onClick={handleServiceClick}>
                         Services ▾
                     </Button>
@@ -103,7 +111,7 @@ export default function Header() {
                         </MenuItem>
                     </Menu>
 
-                    {/* 轮胎下拉菜单 */}
+                    {/* Tires Drop-down menu 轮胎下拉菜单 */}
                     <Button color="inherit" onClick={handleTireClick}>
                         Tires ▾
                     </Button>
@@ -116,7 +124,7 @@ export default function Header() {
                         </MenuItem>
                     </Menu>
                     
-                    {/* 其他产品下拉菜单 */}
+                    {/* Products Drop-down menu 其他产品下拉菜单 */}
                     <Button color="inherit" onClick={handleProductClick}>
                         Products ▾
                     </Button>
@@ -128,7 +136,7 @@ export default function Header() {
                             Rear View System
                         </MenuItem>
                     </Menu>
-                     {/* 其他导航链接 */}
+                  
                     <Button color="inherit" component={Link} to="/about">
                         About Us
                     </Button>

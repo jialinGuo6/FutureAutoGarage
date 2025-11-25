@@ -1,12 +1,9 @@
 /**
- * FutureAutoGarage - Theme Component - 主题
- * 
+ * FutureAutoGarage - Theme Component
  * Author: Jialin Guo
  * Created: 2025-11-03
- * Last Updated: 2025-11-04
- * 
+ * Description: Custom Material-UI theme for consistent appearance across the application.
  * 自定义的Material-UI主题，用于统一应用的外观。
- * 
  * @type {import('@mui/material/styles').Theme}
  */
 import { createTheme } from '@mui/material/styles';
@@ -14,12 +11,12 @@ import { createTheme } from '@mui/material/styles';
 export const customTheme = createTheme({
   palette: {
     primary: {
-      main: '#1976D2', // 蓝色表盘
+      main: '#1976D2', 
       light: '#42A5F5',
       dark: '#0D47A1',
     },
     secondary: {
-      main: '#D32F2F', // 红色指针
+      main: '#D32F2F', 
       light: '#F44336',
       dark: '#B71C1C',
     },

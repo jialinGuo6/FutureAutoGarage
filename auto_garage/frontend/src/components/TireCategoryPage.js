@@ -1,12 +1,23 @@
 /**
  * TireCategoryPage Component - 通用轮胎展示组件
- *
- * 功能：
+ * Author: Jialin Guo
+ * Created: 2025-11-03
+ * Description:
+ * - Accepts API interface address (api_interface)
+ * - Asynchronously fetch tires
+ * - Provides search filtering functionality
+ * - Calls parent component callback (onSelectTire) on table row click
+ * - Supports highlighting the currently selected tire
+ *  * 描述：
  * - 接收 API 接口地址 (api_interface)
  * - 异步请求轮胎数据
  * - 提供搜索过滤功能
  * - 点击表格行后调用父组件回调 (onSelectTire)
  * - 支持表格行高亮显示当前选中轮胎
+ * 
+ *  * Used in Page:
+ * - AllSeasonTires (/pages/AllSeasonTires.js)
+ * - WinterTires (/pages/WinterTires.js)
  */
 
 import { useState, useEffect, useMemo } from 'react';
@@ -18,12 +29,12 @@ import axios from '../utils/axiosConfig';
 import { useLoading } from '../contexts/LoadingContext';
 
 export default function TireCategoryPage({ api_interface, selectedTireId, onSelectTire }) {
-  const [tires, setTires] = useState([]);  // 所有轮胎数据
-  const [searchTerm, setSearchTerm] = useState('');  // 搜索输入
-  const { showLoading, hideLoading } = useLoading();  // 全局 loading 状态
+  const [tires, setTires] = useState([]);             // The array of all tires    所有轮胎数据
+  const [searchTerm, setSearchTerm] = useState('');   // Search input              搜索输入
+  const { showLoading, hideLoading } = useLoading();  // Global loading state全局   loading 状态
   /**
-   * 异步请求轮胎数据
-   */
+  * Async function to fetch tires
+  */
   const fetchTires = async () => {
     showLoading();
     try {
@@ -37,14 +48,14 @@ export default function TireCategoryPage({ api_interface, selectedTireId, onSele
     }
   };
   /**
-   * 组件挂载时加载数据
+   * Fetch the tires on component mount, and whenever api_interface changes then re-fetch
    */
   useEffect(() => {
     fetchTires();
   }, [api_interface]);
   /**
-   * 搜索过滤逻辑
-   * 使用 useMemo 避免每次 render 都重新生成新数组
+   * Search filtering logic  搜索过滤逻辑
+   * Use useMemo to avoid generating a new array every render  使用 useMemo 避免每次 render 都重新生成新数组
    */
   const filteredTires = useMemo(() => {
     return tires.filter((tire) =>
@@ -54,9 +65,9 @@ export default function TireCategoryPage({ api_interface, selectedTireId, onSele
     );
   }, [tires, searchTerm]);
   /**
-   * 表格行点击事件
-   * - 设置本地选中高亮
-   * - 通知父组件更新选中 ID
+   * Handle table row click                   表格行点击事件
+   * - Set local highlight                    - 设置本地选中高亮     
+   * - Notify parent to update selected ID    - 通知父组件更新选中 ID 
    */
   const handleRowClick = (tire) => {
     onSelectTire(tire.id);
@@ -65,7 +76,7 @@ export default function TireCategoryPage({ api_interface, selectedTireId, onSele
   return (
     <Box sx={{ width: '100%', maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
 
-      {/* 搜索框 */}
+      {/* Search Box 搜索框*/}
       <Box sx={{
         background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 30%, #ECEFF1 100%)',
         borderRadius: '12px', p: 3, mb: 3, boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
@@ -87,7 +98,7 @@ export default function TireCategoryPage({ api_interface, selectedTireId, onSele
         />
       </Box>
 
-      {/* 轮胎表格 */}
+      {/* Table 轮胎表格*/}
       {filteredTires.length === 0 ? (
         <Box sx={{
           background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 30%, #ECEFF1 100%)',
@@ -134,11 +145,11 @@ export default function TireCategoryPage({ api_interface, selectedTireId, onSele
               {filteredTires.map((tire) => (
                 <TableRow
                   key={tire.id}
-                  onClick={() => handleRowClick(tire)}  // 点击行触发
+                  onClick={() => handleRowClick(tire)}  // Click the row then call handleRowClick
                   sx={{
                     backgroundColor:
                       selectedTireId === tire.id
-                        ? 'rgba(21, 214, 178, 0.65) !important'  // 当前选中行高亮
+                        ? 'rgba(21, 214, 178, 0.65) !important'  // Current selected row highlighted
                         : 'transparent',
                     '&:hover': { backgroundColor: 'rgba(52,152,219,0.1)' },
                     cursor: 'pointer'

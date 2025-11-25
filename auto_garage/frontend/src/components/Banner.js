@@ -1,11 +1,9 @@
 /**
  * FutureAutoGarage - Bannder Component - 轮播
- * 
  * Author: Jialin Guo
  * Created: 2025-11-03
- * Last Updated: 2025-11-04
- * 
- * banner图片轮播, 在home页面
+ * Description: Homepage Image Carousel 
+ * Used in Page: Home Page(/pages/HomePage.js)
  */
 import { Box } from '@mui/material';
 import { useState, useEffect } from 'react';
@@ -20,11 +18,11 @@ export default function Banner() {
     ];
     
     const [currentIndex, setCurrentIndex] = useState(0);
-    
+    // useEffect will render the component when currentIndex change, so the banner will change
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 3000); // 3秒切换
+        }, 3000); // 3sec change
         
         return () => clearInterval(interval);
     }, []);

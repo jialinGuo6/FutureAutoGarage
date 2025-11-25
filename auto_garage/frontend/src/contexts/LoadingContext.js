@@ -1,10 +1,7 @@
 /**
- * FutureAutoGarage - LoadingContext Component - 加载上下文
- * 
+ * FutureAutoGarage - LoadingContext Component
  * Author: Jialin Guo
  * Created: 2025-11-03
- * Last Updated: 2025-11-04
- * 
  * 加载上下文，用于管理加载状态
  */
 import { createContext, useContext, useState } from 'react';

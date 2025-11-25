@@ -2,12 +2,9 @@
  * FutureAutoGarage - ContactLocation Component - 联系我们
  * Author: Jialin Guo
  * Created: 2025-11-03
- * Last Updated: 2025-11-04
- * 
- * 展示关于
- * 
- * 页面结构:    
- * 1. Information 地址，联系方式，和工作时间 （FaceBook?）
+* Description: ContactLocation Page for Future Auto Garage
+ * Structure:    
+ * 1. Information 地址，联系方式，和工作时间
  */
 
 import { Typography, Container, Box, Link} from '@mui/material';

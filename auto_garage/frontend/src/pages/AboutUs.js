@@ -1,15 +1,12 @@
 /**
- * FutureAutoGarage - AboutUs Component - 关于我们
+ * FutureAutoGarage - About Us
  * Author: Jialin Guo
  * Created: 2025-11-03
- * Last Updated: 2025-11-04
- * 
- * 展示关于我们的信息
- * 
- * 页面结构:    
+ * Description: About Us Page for Future Auto Garage
+ * Structure:    
  * 1. About Us 内容介绍
- * 2. Information 地址，联系方式，和工作时间
- * 3. Facilities & Services 服务设施和服务
+ * 2. Facilities & Services 服务设施和服务
+ * 3. Navigation Buttons 跳转按钮
  */
 
 import { Typography, Container, Box, Grid, Paper, Button } from '@mui/material';
@@ -96,7 +93,7 @@ export default function AboutUs() {
                         </Paper>
                     </Grid>
                 </Grid>
-                                {/* 新增页尾按钮区域 */}
+                 {/* Navigation Buttons to Contact Us*/}
                 <Box sx={{ textAlign: 'center', mt: 8, mb: 6 }}>
                     <Typography variant="h6" sx={{ mb: 2, fontWeight: 500, color: 'text.primary' }}>
                         Have questions or need an appointment?

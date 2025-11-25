@@ -1,21 +1,15 @@
 /**
- * FutureAutoGarage - CarMaintenance Component - 车辆保养
- * 
+ * FutureAutoGarage - Service - CarMaintenance Component - 车辆保养
  * Author: Jialin Guo
  * Created: 2025-11-03
- * Last Updated: 2025-11-10
- * 
- * 展示车辆保养的信息
- * 
- * 页面结构:
- * 左侧导航栏 
+ * Description: This component displays information about car maintenance services, 
+ * including the right content area and left sidebar information
+ * Left Sidebar Information
  * -  Regular Car Maintenance → 例行保养：换油、滤清器、例行检查
  * -  Seasonal Car Maintenance → 季节性保养：冬夏轮胎检查、空调/冷却系统准备
  * -  Car Alignment → 四轮定位，延长轮胎寿命，改善操控    
  * -  Cabin Air Filter → 舱内空气滤芯更换
  * -  Differential Service → 差速器液体更换、轻度检查，确保行驶平稳
- * 核心原则：定期保养、延长寿命、改善驾驶体验
- * 右侧内容区
  */
 import ServiceDetails from '../components/ServiceDetails';
 import { useState } from 'react';

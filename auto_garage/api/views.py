@@ -1,9 +1,7 @@
 """
 FutureAutoGarage - API Views
-
 Author: Jialin Guo
 Created: 2025-11-03
-Last Updated: 2025-11-04
 Description: REST API view classes for handling HTTP requests and responses.
              Implements business logic, data validation, and API endpoint behavior.
 
@@ -66,11 +64,10 @@ class TireListView(generics.ListAPIView):
         return Tire.objects.none()
 
 class TireImagesView(generics.ListAPIView):
-    """根据轮胎ID获取该轮胎的所有图片"""
+    """Get all images for a specific tire based on the tire ID."""
     serializer_class = TireImageSerializer
     def get_queryset(self):
-        # 从URL获取的是轮胎的主键id（比如用户点击了id=1的轮胎）
-        # tire_id 是 URL "参数名",设定在urls.py
+        # Get the Tire ID (primary key) when user clicks on a tire at table, tire_id is URL "parameter", define it in urls.py
         tire_id = self.kwargs['tire_id']
-         # 查询TireImage表中tire_id字段等于这个主键值的轮胎所有图片
+         # Return all images for the specific tire
         return TireImage.objects.filter(tire_id=tire_id)

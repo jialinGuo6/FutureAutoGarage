@@ -1,20 +1,28 @@
 /**
- * FutureAutoGarage - ServiceDetails Component - 美化版 - 待定
+ * FutureAutoGarage - ServiceDetails Component 
+ * Author: Jialin Guo
+ * Created: 2025-11-10
+ * Description: 
+ * - This is a component for layout the page structure for two service related pages.
+ * - It includes the left sidebar and the right content area.
+ * Used in Page:
+ * - Service - CarMaintenance(/pages/CarMaintenance.js)
+ * - Service - AutoRepairs(/pages/AutoRepairs.js)
  */
 import React from 'react';
 import { Box, Typography, List, ListItemText, Paper, Grid } from '@mui/material';
 import { ListItemButton, ListItemIcon, Divider } from '@mui/material';
-import BuildIcon from '@mui/icons-material/Build'; // 这是一个示例图标
+import BuildIcon from '@mui/icons-material/Build'; 
 export default function ServiceDetails({servicesType, serviceContent, selectedService, setSelectedService}) {
   return (
     <Box sx={{ width: '100%', maxWidth: 1200, mx: 'auto', px: 2, mt: 4, marginTop: '-20px' }}>
       <Typography variant="h4" component="h1" sx={{ marginBottom: '24px', textAlign: 'center', color: '#2c3e50', fontWeight: 600 }}>      
         Car Maintenance
       </Typography>
-
+      
       <Grid container spacing={3} direction="row" wrap="nowrap">
         <Grid size={3}>
-    
+          {/* Left Sidebar */}
           <Paper sx={{ p: 2, borderRadius: 2, boxShadow: 3}}>
             <Typography variant="h6" sx={{ mb: 2, color: 'primary.main', fontWeight: 600 }}>
               Maintenance Services
@@ -65,7 +73,7 @@ export default function ServiceDetails({servicesType, serviceContent, selectedSe
           </Paper>
         </Grid>
 
-        {/* 右侧内容 */}
+        {/* Right Content */}
          <Grid size={9}>
           <Paper sx={{ p: 4, borderRadius: 2, boxShadow: 3, height: "90%", backgroundColor: '#fdfdfd' }}>
             <Typography variant="h5" sx={{ mb: 2, color: 'primary.main', fontWeight: 600 }}>

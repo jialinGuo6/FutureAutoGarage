@@ -1,11 +1,10 @@
 /**
- * FutureAutoGarage - AutoRepairs Component - 车辆维修/保养
- * 
+ * FutureAutoGarage - Service - AutoRepairs Component - 车辆维修/保养
  * Author: Jialin Guo
  * Created: 2025-11-03
- * Last Updated: 2025-11-10
+ * Description: This component displays information about car maintenance services, 
+ * including the right content area and left sidebar information
  * 
- * 展示车辆维修和保养的信息，针对小型汽车服务中心的实际能力。
  * Tire Replacement / Installation → 换胎、安装、平衡，所有常见轮胎类型
  * Engine Diagnostics → 电脑诊断，轻微调整和小问题修理
  * Brake Service → 刹车检查、刹车片更换、刹车液补充
@@ -14,9 +13,7 @@
  * Air Conditioning → 空调系统加氟、泄漏检测、小部件修理
  * Exhaust System → 排气检查、轻微管道或消声器修理
  * Suspension & Steering Maintenance → 悬挂/转向日常维护与轻修
- * 核心原则：不承诺大修、重建、复杂零件更换
  */
-
 import ServiceDetails from '../components/ServiceDetails';
 import { useState } from 'react';
 

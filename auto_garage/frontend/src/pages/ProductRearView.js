@@ -1,3 +1,11 @@
+/**
+ * FutureAutoGarage - Products - ProductRearView Component
+ * Author: Jialin Guo
+ * Created: 2025-11-03
+ * Description:
+ * - Introduce the product page for rear view
+ * - Render the CarShowPics image component
+ */
 import { Box, Typography } from '@mui/material';
 import CarShowPics from '../components/CarShowPics';
 
@@ -17,12 +25,7 @@ export default function ProductRearView() {
                  Rear View System
             </Typography>
             
-            {/* 图片展示组件 */}
-            {/* 建议样式优化：
-                - 可使用 Card + 滑动轮播效果
-                - 图片下方显示轮胎品牌和尺寸
-                - 鼠标 hover 或移动端滑动时有淡入淡出动画
-                - 可增加缩略图导航条 */}
+            {/* Image display component 图片展示组件 */}
             <CarShowPics 
             tireId={null}   
             defaultImages={LightPics}
@@ -44,8 +47,8 @@ export default function ProductRearView() {
             <img src={LightPicshow[0]} alt="LightPic1" style={{ 
                 width: '70%', 
                 marginTop: '20px',     
-                display: 'block',       // 让图片变成块级元素
-                marginLeft: 'auto',     // 左右自动边距实现居中
+                display: 'block',        // Make the image a block-level element  让图片变成块级元素
+                marginLeft: 'auto',      // Auto margin on the left and right     左右自动边距实现居中
                 marginRight: 'auto' }} />
            
         </Box>

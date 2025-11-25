@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()  # 加载环境变量
+load_dotenv()  # 加载环境变量 load the .env file
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-development-ke
 # 从环境变量读取配置，设置默认值用于开发环境
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() == 'true'
 
-# 配置ALLOWED_HOSTS
+# config ALLOWED_HOSTS
 ALLOWED_HOSTS_STR = os.environ.get('DJANGO_ALLOWED_HOSTS', '')
 if ALLOWED_HOSTS_STR:
     ALLOWED_HOSTS = ALLOWED_HOSTS_STR.split(',')
@@ -129,10 +129,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-## 生产环境静态文件收集目录
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # 生产环境静态文件收集目录
+## 生产环境静态文件收集目录 collect static files in production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
 
-## 开发环境静态文件目录
+## 开发环境静态文件目录 the development static files directory
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/static'),
 ]
@@ -142,13 +142,13 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # REST Framework 配置 - 设置API认证和权限
-# amazonq-ignore-next-line
+# config REST_FRAMEWORK - set up API authentication and permissions
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',  # 使用Django session认证
+        'rest_framework.authentication.SessionAuthentication',  # 使用Django session认证 use Django session authentication
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',  # 允许所有用户访问API
+        'rest_framework.permissions.AllowAny',  # 允许所有用户访问API allow any user to access
     ],
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
@@ -161,54 +161,60 @@ REST_FRAMEWORK = {
 }
 
 # CSRF 配置 - 防止跨站请求伪造攻击
-CSRF_COOKIE_NAME = 'csrftoken'  # CSRF token的cookie名称
-CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'  # 前端发送CSRF token的header名称
-CSRF_COOKIE_HTTPONLY = False  # 允许JavaScript访问Cookie
-CSRF_COOKIE_SAMESITE = 'Lax'  # 跨域设置
+# config CSRF - prevent cross-site request forgery attacks
+CSRF_COOKIE_NAME = 'csrftoken'  # CSRF token的cookie名称 the name of the CSRF token cookie
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'  # 前端发送CSRF token的header名称 the header name of the CSRF token sent by the frontend
+CSRF_COOKIE_HTTPONLY = False  # 允许JavaScript访问Cookie allow JavaScript to access cookies
+CSRF_COOKIE_SAMESITE = 'Lax'  # 跨域设置 cross-site setting
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
 
 # CORS 配置 - 允许前端跨域访问后端API
+# config CORS - allow frontend to access backend APIs
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React开发服务器地址
-    "http://127.0.0.1:3000",  # 备用地址
+    "http://localhost:3000",  # React开发服务器地址 React development server address
+    "http://127.0.0.1:3000",  # 备用地址 backup address
 ]
 # 重要：允许凭证（cookies）
-CORS_ALLOW_CREDENTIALS = True  # 允许跨域请求携带cookies和认证信息
+# important: allow credentials
+CORS_ALLOW_CREDENTIALS = True  # 允许跨域请求携带cookies和认证信息 allow cross-origin requests to carry cookies and authentication information
 
 # Session 配置 - 管理用户会话
-SESSION_COOKIE_AGE = 86400  # session有效期24小时
-SESSION_SAVE_EVERY_REQUEST = True  # 每次请求都更新session过期时间
-SESSION_EXPIRE_AT_BROWSER_CLOSE = not DEBUG  ## 开发=False，生产=True, 关闭浏览器不清除session 
+# config session - manage user sessions
+SESSION_COOKIE_AGE = 86400  # session有效期24小时 session expiration time
+SESSION_SAVE_EVERY_REQUEST = True  # 每次请求都更新session过期时间 update session expiration time on every request
+SESSION_EXPIRE_AT_BROWSER_CLOSE = not DEBUG  ## 开发=False，生产=True, 关闭浏览器不清除session  clear session when the browser is closed
 
 
 # 安全配置 - 基础安全防护
-SECURE_BROWSER_XSS_FILTER = True  # 启用浏览器XSS过滤器
-SECURE_CONTENT_TYPE_NOSNIFF = True  # 防止浏览器MIME类型嗅探
+# config security - basic security measures
+SECURE_HSTS_SECONDS = 31536000  # 1年, HSTS过期时间 HSTS expiration time
+SECURE_BROWSER_XSS_FILTER = True  # 启用浏览器XSS过滤器 enable browser XSS filter
+SECURE_CONTENT_TYPE_NOSNIFF = True  # 防止浏览器MIME类型嗅探 prevent MIME type sniffing in the browser
 
-# 媒体文件位置
-MEDIA_URL = '/media/' #路径为:http://127.0.0.1:8000/media
+# 媒体文件位置 media file location
+MEDIA_URL = '/media/' #path:http://127.0.0.1:8000/media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# 在文件末尾添加生产环境配置
-## 生产环境安全设置
+# 在文件末尾添加生产环境配置 append production configuration at the end
+## 生产环境安全设置 production security settings
 if not DEBUG:
-    # 强制 HTTPS
+    # 强制 HTTPS Force HTTPS
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     
-    # Cookie 安全
+    # Cookie 安全 Cookie security
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     
-    # HSTS 安全头
+    # HSTS 安全头 HSTS security header
     SECURE_HSTS_SECONDS = 31536000  # 1年
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     
-    # 其他安全头
+    # 其他安全头 Other security headers
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = 'DENY'

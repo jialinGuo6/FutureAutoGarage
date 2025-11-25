@@ -1,11 +1,9 @@
 /**
  * FutureAutoGarage - GotoBox Component - 跳转按钮
- * 
  * Author: Jialin Guo
- * Created: 2025-11-03
- * Last Updated: 2025-11-04
- * 
- * 包含跳转按钮，用于导航到其他页面
+ * Created: 2025-11-03 
+ * Description: Includes navigation buttons to other pages
+ * Used in Page: Home Page(/pages/HomePage.js)
  */
 import { Box, Typography, Button, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -14,8 +12,8 @@ export default function GotoBox() {
     return (
         <Box sx={{ maxWidth: '900px', margin: '60px auto', padding: '0 20px', textAlign: 'center' }}>
             <Grid container spacing={0} justifyContent="center" sx={{ maxWidth: '900px' }}>
-                {/* 第一行 */}
-                {/* 坐标 (1,1) - 左上角 检查后：正确*/}
+                {/* Row 1th */}
+                {/* At (1,1) -  Left Top */}
                 <Grid sx={{ flexBasis: '33.33%', maxWidth: '33.33%' }}>
                     <Box sx={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 30%, #ECEFF1 100%)', height: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', border: '1px solid rgba(0,0,0,0.05)' }}>
                         <img 
@@ -26,7 +24,7 @@ export default function GotoBox() {
                     </Box>
                 </Grid>
                 
-                {/* 坐标 (1,2) - 上中 检查后：正确*/}
+                {/* At (1,2) -  Center Top */}
                 <Grid sx={{ flexBasis: '33.33%', maxWidth: '33.33%' }}>
                     <Box sx={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 30%, #ECEFF1 100%)', height: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', border: '1px solid rgba(0,0,0,0.05)' }}>
                         <Typography variant="h6" sx={{ color: '#2c3e50', fontWeight: '600', mb: 2 }}>
@@ -56,7 +54,7 @@ export default function GotoBox() {
                     </Box>
                 </Grid>
                 
-                {/* 坐标 (1,3) - 右上角 检查后：正确*/}
+                {/* At (1,3) -  Right Top */}
                 <Grid sx={{ flexBasis: '33.33%', maxWidth: '33.33%' }}>
                     <Box sx={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 30%, #ECEFF1 100%)', height: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', border: '1px solid rgba(0,0,0,0.05)' }}>
                         <img 
@@ -67,8 +65,8 @@ export default function GotoBox() {
                     </Box>
                 </Grid>
                 
-                {/* 第二行 */}
-                {/* 坐标 (2,1) - 左下角 */}
+                {/* Row 2ed */}
+                {/* At (2,1) -  Left Bottom */}
                 <Grid sx={{ flexBasis: '33.33%', maxWidth: '33.33%' }}>
                     <Box sx={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 30%, #ECEFF1 100%)', height: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', border: '1px solid rgba(0,0,0,0.05)' }}>
                         <Typography variant="h6" sx={{ color: '#2c3e50', fontWeight: '600', mb: 2 }}>
@@ -96,7 +94,7 @@ export default function GotoBox() {
                         </Button>
                     </Box>
                 </Grid>
-                {/* 坐标 (2,2) - 下中 */}
+                {/* At (2,2) - Center Bottom */}
                 <Grid sx={{ flexBasis: '33.33%', maxWidth: '33.33%' }}>
                     <Box sx={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 30%, #ECEFF1 100%)', height: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', border: '1px solid rgba(0,0,0,0.05)' }}>
                         <img 
@@ -107,7 +105,7 @@ export default function GotoBox() {
                     </Box>
                 </Grid>
                 
-                {/* 坐标 (2,3) - 右下角 */}
+                {/* At (2,3) -  Right Bottom */}
                 <Grid sx={{ flexBasis: '33.33%', maxWidth: '33.33%' }}>
                     <Box sx={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 30%, #ECEFF1 100%)', height: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', border: '1px solid rgba(0,0,0,0.05)' }}>
                         <Typography variant="h6" sx={{ color: '#2c3e50', fontWeight: '600', mb: 2 }}>
