@@ -20,17 +20,16 @@ FutureAutoGarage/
 │   ├── media/                  # User Uploaded Files
 │   └── manage.py              # Django Management
 ├── frontend-vite/              # Vite React Frontend
-│   ├── src/                    # Source Code
-│   ├── public/                 # Static Assets
-│   └── dist/                   # Build Output (Production)
+│   ├── src/                    # Source Code (Local Only)
+│   ├── public/                 # Static Assets (Local Only)
+│   └── dist/                   # Build Output (Git)
 ├── logs/                       # Server Logs
 ├── start_dev.sh               # Development Startup Script
 ├── stop_dev.sh                # Development Stop Script
 ├── deploy_prod.sh             # Production Deployment Script
 ├── start_prod.sh              # Production Start Script
 ├── stop_prod.sh               # Production Stop Script
-├── update_frontend.sh         # Frontend Update Script
-├── update_backend.sh          # Backend Update Script
+├── update_prod.sh             # Update Script
 ├── rollback_prod.sh           # Production Rollback Script
 
 └── README.md                  # This File
@@ -118,15 +117,15 @@ npm run preview
 ### Server Requirements
 - **Web Server**: Nginx (recommended)
 - **WSGI Server**: Gunicorn
-- **Database**: SQLite3 (dev) / PostgreSQL (prod)
+- **Database**: SQLite3 (dev) 
 - **Process Manager**: systemd or PM2
 
 ### Initial Deployment (Aliyun Server)
 ```bash
-# 1. Clone repository
+# 1. Clone repository (will create /home/FutureAutoGarage directory)
 cd /home
 git clone https://github.com/jialinGuo6/FutureAutoGarage.git
-cd FutureAutoGarage
+cd FutureAutoGarage  # Now in /home/FutureAutoGarage
 
 # 2. Install dependencies
 sudo apt update
@@ -153,7 +152,7 @@ vim .env  # Edit with production values
 ./update_prod.sh
 
 # Rollback if needed
-./rollback_prod.sh backup_20241129_123456
+./rollback_prod.sh backup_20251229_123456
 ```
 
 ### Service Management
@@ -178,7 +177,7 @@ https://docs.google.com/spreadsheets/d/1K270MJUMYaFQhxAvObNoWePWZf6qRWBvpKeA53lM
 
 - **Facebook**: https://www.facebook.com/NAPASJ/
 - **Project Size**: ~16MB
-- **Upload Date**: November 2024
+- **Upload Date**: December 2025
 
 ---
 
@@ -202,17 +201,16 @@ FutureAutoGarage/
 │   ├── media/                  # 用户上传文件
 │   └── manage.py              # Django 管理
 ├── frontend-vite/              # Vite React 前端
-│   ├── src/                    # 源代码
-│   ├── public/                 # 静态资源
-│   └── dist/                   # 构建输出（生产环境）
+│   ├── src/                    # 源代码（仅本地）
+│   ├── public/                 # 静态资源（仅本地）
+│   └── dist/                   # 构建输出（Git）
 ├── logs/                       # 服务器日志
 ├── start_dev.sh               # 开发启动脚本
 ├── stop_dev.sh                # 开发停止脚本
 ├── deploy_prod.sh             # 生产环境部署脚本
 ├── start_prod.sh              # 生产环境启动脚本
 ├── stop_prod.sh               # 生产环境停止脚本
-├── update_frontend.sh         # 前端更新脚本
-├── update_backend.sh          # 后端更新脚本
+├── update_prod.sh             # 更新脚本
 ├── rollback_prod.sh           # 生产环境回滚脚本
 └── README.md                  # 说明文件
 ```
@@ -299,15 +297,15 @@ npm run preview
 ### 服务器要求
 - **Web 服务器**: Nginx（推荐）
 - **WSGI 服务器**: Gunicorn
-- **数据库**: SQLite3（开发）/ PostgreSQL（生产）
+- **数据库**: SQLite3
 - **进程管理**: systemd 或 PM2
 
 ### 初始部署（阿里云服务器）
 ```bash
-# 1. 克隆仓库
+# 1. 克隆仓库（会创建 /home/FutureAutoGarage 目录）
 cd /home
 git clone https://github.com/jialinGuo6/FutureAutoGarage.git
-cd FutureAutoGarage
+cd FutureAutoGarage  # 现在在 /home/FutureAutoGarage
 
 # 2. 安装依赖工具
 sudo apt update
@@ -334,7 +332,7 @@ vim .env  # 编辑为生产环境配置
 ./update_prod.sh
 
 # 如需回滚
-./rollback_prod.sh backup_20241129_123456
+./rollback_prod.sh backup_20251229_123456
 ```
 
 ### 服务管理
@@ -354,4 +352,4 @@ tail -f logs/gunicorn_error.log
 
 - **Facebook**: https://www.facebook.com/NAPASJ/
 - **项目大小**: ~16MB
-- **上传日期**: 2024年11月
+- **上传日期**: 2025年12月

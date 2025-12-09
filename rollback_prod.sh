@@ -3,7 +3,7 @@
 # 检查参数
 if [ $# -eq 0 ]; then
     echo "❌ 错误: 请指定备份目录"
-    echo "用法: ./rollback_prod.sh backup_20241129_123456"
+    echo "用法: ./rollback_prod.sh backup_20251229_123456"
     echo ""
     echo "可用的备份:"
     ls -d backup_* 2>/dev/null || echo "   无可用备份"
@@ -45,7 +45,7 @@ if [ $? -eq 0 ]; then
     echo "🎉 回滚成功!"
     echo "   - 已恢复到: $BACKUP_DIR"
     echo "   - 当前版本备份: $CURRENT_BACKUP"
-    echo "   - 网站: http://your-domain.com"
+    echo "   - 网站: https://futuregarage.net"
 else
     echo "❌ 回滚失败，尝试恢复当前版本..."
     rm -rf auto_garage frontend-vite

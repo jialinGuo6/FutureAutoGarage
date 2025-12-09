@@ -11,7 +11,6 @@ fi
 
 if [ ! -d "frontend-vite/dist" ]; then
     echo "❌ 错误: 未找到前端构建文件"
-    echo "   请先执行: ./update_frontend.sh"
     exit 1
 fi
 

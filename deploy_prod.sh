@@ -2,8 +2,8 @@
 
 echo "🚀 首次部署生产环境..."
 
-# 项目根目录
-PROJECT_DIR="/home/FutureAutoGarage"
+# 项目根目录（自动获取脚本所在目录）
+PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # 检查是否在虚拟环境中
 if [[ "$VIRTUAL_ENV" == "" ]]; then
@@ -21,7 +21,7 @@ fi
 # 检查前端构建文件
 if [ ! -d "frontend-vite/dist" ]; then
     echo "❌ 错误: 未找到前端构建文件"
-    echo "   请先执行前端更新: ./update_frontend.sh"
+    echo "   请确认 Git 仓库包含 frontend-vite/dist/ 目录"
     exit 1
 fi
 
