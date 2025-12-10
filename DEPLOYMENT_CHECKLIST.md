@@ -114,15 +114,12 @@ chmod +x *.sh
 ### 第六步：配置Nginx
 ```bash
 # 1. 复制Nginx配置
-sudo cp nginx_futureautogarage.conf /etc/nginx/sites-available/
+sudo cp nginx_futureautogarage.conf /etc/nginx/conf.d/
 
-# 2. 创建软链接
-sudo ln -s /etc/nginx/sites-available/nginx_futureautogarage.conf /etc/nginx/sites-enabled/
-
-# 3. 测试Nginx配置
+# 2. 测试Nginx配置
 sudo nginx -t
 
-# 4. 重载Nginx
+# 3. 重载Nginx
 sudo systemctl reload nginx
 
 # 5. 确保Nginx开机自启

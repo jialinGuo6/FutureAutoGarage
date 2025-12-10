@@ -29,9 +29,13 @@ fi
 echo "📁 创建必要目录..."
 mkdir -p logs
 
+# 安装后端依赖
+echo "📦 安装后端依赖..."
+cd auto_garage
+pip install -r requirements.txt
+
 # 数据库初始化
 echo "🗄️ 初始化数据库..."
-cd auto_garage
 python manage.py migrate --settings=auto_garage_project.settings.prod
 python manage.py collectstatic --noinput --settings=auto_garage_project.settings.prod
 
@@ -90,10 +94,9 @@ EOF
 echo "✅ Nginx 配置文件已生成: nginx_futureautogarage.conf"
 echo ""
 echo "🔧 请手动执行以下步骤完成 Nginx 配置:"
-echo "   1. sudo cp nginx_futureautogarage.conf /etc/nginx/sites-available/"
-echo "   2. sudo ln -s /etc/nginx/sites-available/nginx_futureautogarage.conf /etc/nginx/sites-enabled/"
-echo "   3. sudo nginx -t  # 测试配置"
-echo "   4. sudo systemctl reload nginx"
+echo "   1. sudo cp nginx_futureautogarage.conf /etc/nginx/conf.d/"
+echo "   2. sudo nginx -t  # 测试配置"
+echo "   3. sudo systemctl reload nginx"
 echo ""
 echo "🎉 部署完成! 现在可以启动服务:"
 echo "   ./start_prod.sh"
