@@ -28,11 +28,18 @@ fi
 # 创建必要目录
 echo "📁 创建必要目录..."
 mkdir -p logs
+mkdir -p auto_garage/media
+
+# 设置文件权限
+echo "🔒 设置文件权限..."
+chmod 755 logs auto_garage/media
+chmod 644 auto_garage/media/* 2>/dev/null || true
 
 # 安装后端依赖
 echo "📦 安装后端依赖..."
 cd auto_garage
 pip install -r requirements.txt
+pip install gunicorn
 
 # 数据库初始化
 echo "🗄️ 初始化数据库..."

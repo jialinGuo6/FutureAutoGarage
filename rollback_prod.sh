@@ -20,6 +20,12 @@ fi
 
 echo "🔄 回滚到备份版本: $BACKUP_DIR"
 
+# 检查是否在虚拟环境中
+if [[ "$VIRTUAL_ENV" == "" ]]; then
+    echo "⚠️  警告: 建议在虚拟环境中运行"
+    echo "   请先执行: source venv/bin/activate"
+fi
+
 # 停止当前服务
 echo "🛑 停止当前服务..."
 ./stop_prod.sh

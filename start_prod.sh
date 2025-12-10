@@ -2,6 +2,12 @@
 
 echo "🚀 启动生产环境服务..."
 
+# 检查是否在虚拟环境中
+if [[ "$VIRTUAL_ENV" == "" ]]; then
+    echo "⚠️  警告: 建议在虚拟环境中运行"
+    echo "   请先执行: source venv/bin/activate"
+fi
+
 # 检查是否已经部署
 if [ ! -f ".env" ]; then
     echo "❌ 错误: 未找到 .env 文件"

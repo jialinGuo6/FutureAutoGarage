@@ -2,12 +2,18 @@
 
 echo "🔄 更新生产环境..."
 
+# 检查是否在虚拟环境中
+if [[ "$VIRTUAL_ENV" == "" ]]; then
+    echo "⚠️  警告: 建议在虚拟环境中运行"
+    echo "   请先执行: source venv/bin/activate"
+fi
+
 # 备份当前版本
 echo "📦 备份当前版本..."
 BACKUP_DIR="backup_$(date +%Y%m%d_%H%M%S)"
 mkdir -p $BACKUP_DIR
-cp -r auto_garage $BACKUP_DIR/ 2>/dev/null
-cp -r frontend-vite/dist $BACKUP_DIR/ 2>/dev/null
+# 备份整个项目（排除 .git 和 venv）
+rsync -av --exclude='.git' --exclude='venv' --exclude='__pycache__' ./ $BACKUP_DIR/
 echo "✅ 备份完成: $BACKUP_DIR"
 
 # 停止服务
@@ -20,8 +26,9 @@ git pull origin main
 
 if [ $? -ne 0 ]; then
     echo "❌ Git 拉取失败，恢复备份..."
-    rm -rf auto_garage frontend-vite/dist
-    cp -r $BACKUP_DIR/* ./
+    # 恢复整个项目
+    rm -rf ./* .env 2>/dev/null
+    rsync -av $BACKUP_DIR/ ./
     echo "🔄 备份已恢复"
     exit 1
 fi
@@ -31,6 +38,7 @@ echo "📦 更新后端依赖..."
 cd auto_garage
 pip install -r requirements.txt
 python manage.py migrate --settings=auto_garage_project.settings.prod
+python manage.py collectstatic --noinput --settings=auto_garage_project.settings.prod
 cd ..
 
 # 重新启动服务
