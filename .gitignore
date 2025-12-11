@@ -25,7 +25,6 @@ db.sqlite3
 media/
 
 # 静态文件收集目录 Static files collection
-staticfiles/
 static_root/
 
 # Python 缓存文件 Python cache

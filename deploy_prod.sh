@@ -82,6 +82,13 @@ server {
         proxy_set_header X-Forwarded-Proto \$scheme;
     }
 
+    # Django 静态文件
+    location /static/ {
+        alias $PROJECT_DIR/auto_garage/staticfiles/;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
     # 媒体文件代理
     location /media/ {
         proxy_pass http://127.0.0.1:8000;
