@@ -2,10 +2,16 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS_STR = os.environ.get('DJANGO_ALLOWED_HOSTS', '')
-ALLOWED_HOSTS = ALLOWED_HOSTS_STR.split(',') if ALLOWED_HOSTS_STR else []
+# 允许的主机
+ALLOWED_HOSTS = [
+    'futuregarage.net',
+    'www.futuregarage.net',
+    'localhost',
+    '127.0.0.1',
+    '47.252.11.228',  # 服务器公网IP
+]
 
-# SQLite 虽然可用，但生产建议换 MySQL/PostgreSQL
+# 数据库配置
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -13,25 +19,36 @@ DATABASES = {
     }
 }
 
-# Vite 前端生产环境 CORS 配置
-# 修改为你的实际前端域名
+# CORS 配置
 CORS_ALLOWED_ORIGINS = [
-    "https://futureautogarage.com",  # 修改为你的 Vite 前端域名
-    "https://www.futureautogarage.com",
+    "http://futuregarage.net",
+    "http://www.futuregarage.net",
+    "https://futuregarage.net",
+    "https://www.futuregarage.net",
+    "http://47.252.11.228",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://futureautogarage.com",
-    "https://www.futureautogarage.com",
+    "http://futuregarage.net",
+    "http://www.futuregarage.net", 
+    "https://futuregarage.net",
+    "https://www.futuregarage.net",
+    "http://47.252.11.228",
 ]
 
-# 强制 HTTPS
-SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# 静态文件配置
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# 媒体文件配置
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+# 安全设置（暂时关闭 HTTPS 强制重定向，等配置 SSL 证书后再开启）
+# SECURE_SSL_REDIRECT = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SECURE_HSTS_SECONDS = 31536000
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True

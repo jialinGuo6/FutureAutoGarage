@@ -1,10 +1,12 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-
+import sys
 # load .env
 load_dotenv()
-
+# sys.modules['sqlite3'] = __import__('pysqlite3')
+#pip uninstall sqlite3
+#pip install pysqlite3-binary==0.4.7
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')

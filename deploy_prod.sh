@@ -30,10 +30,6 @@ echo "📁 创建必要目录..."
 mkdir -p logs
 mkdir -p auto_garage/media
 
-# 设置文件权限
-echo "🔒 设置文件权限..."
-chmod 755 logs auto_garage/media
-chmod 644 auto_garage/media/* 2>/dev/null || true
 
 # 安装后端依赖
 echo "📦 安装后端依赖..."
@@ -44,47 +40,60 @@ pip install gunicorn
 # 数据库初始化
 echo "🗄️ 初始化数据库..."
 python manage.py migrate --settings=auto_garage_project.settings.prod
-python manage.py collectstatic --noinput --settings=auto_garage_project.settings.prod
+
+# 设置文件权限
+echo "🔒 设置文件权限..."
+cd ..
+chmod -R 755 logs auto_garage/media 
 
 # 创建超级用户（可选）
 read -p "是否创建管理员账户? (y/n): " create_admin
 if [ "$create_admin" = "y" ]; then
+    cd auto_garage
     python manage.py createsuperuser --settings=auto_garage_project.settings.prod
+    cd ..
 fi
-
-cd ..
 
 # 生成 Nginx 配置文件
 echo "📄 生成 Nginx 配置文件..."
 cat > nginx_futureautogarage.conf << EOF
 server {
-    listen 80;
+    listen 443 ssl http2; # 新增：监听 HTTPS 端口
     server_name futuregarage.net www.futuregarage.net;
+
+    # 新增：指定证书路径（就是你刚才安装的）
+    ssl_certificate /etc/nginx/ssl/futuregarage.pem;
+    ssl_certificate_key /etc/nginx/ssl/futuregarage.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+
+    root /home/FutureAutoGarage/frontend-vite/dist;
+    index index.html;
 
     # 前端静态文件
     location / {
-        root $PROJECT_DIR/frontend-vite/dist;
-        try_files \$uri \$uri/ /index.html;
-        
-        # 缓存静态资源
-        location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
-            expires 1y;
-            add_header Cache-Control "public, immutable";
-        }
+        try_files $uri $uri/ /index.html;
+    }
+
+    # 缓存静态资源
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
     }
 
     # 后端 API 代理
     location /api/ {
         proxy_pass http://127.0.0.1:8000;
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    # Django 静态文件
+    # Django 静态文件（直接通过 Nginx 提供）
     location /static/ {
-        alias $PROJECT_DIR/auto_garage/staticfiles/;
+        alias /home/FutureAutoGarage/auto_garage/staticfiles/;
+        autoindex off;
         expires 1y;
         add_header Cache-Control "public, immutable";
     }
@@ -94,14 +103,21 @@ server {
         proxy_pass http://127.0.0.1:8000;
     }
 
-    # Django 管理后台代理
+    # Django 管理后台代理 
+    #proxy_set_header X-Script-Name /admin;
     location /admin/ {
         proxy_pass http://127.0.0.1:8000;
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
+}
+ # 新增：HTTP 自动跳转 HTTPS（非常重要，SEO 必须）
+server {
+    listen 80;
+    server_name futuregarage.net www.futuregarage.net;
+    return 301 https://$server_name$request_uri; # 永久重定向
 }
 EOF
 

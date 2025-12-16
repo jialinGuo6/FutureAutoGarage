@@ -34,6 +34,9 @@ fi
 echo "启动 Django 后端 (Gunicorn)..."
 cd auto_garage
 
+# 设置 Django 环境变量
+export DJANGO_SETTINGS_MODULE=auto_garage_project.settings.prod
+
 # 启动 Gunicorn
 gunicorn auto_garage_project.wsgi:application \
     --bind 127.0.0.1:8000 \

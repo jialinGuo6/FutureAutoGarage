@@ -18,6 +18,7 @@ FutureAutoGarage/
 │   ├── api/                    # REST API Application
 │   ├── auto_garage_project/    # Django Settings
 │   ├── media/                  # User Uploaded Files
+│   ├── staticfiles/            # Collected Static Files
 │   └── manage.py              # Django Management
 ├── frontend-vite/              # Vite React Frontend
 │   ├── src/                    # Source Code (Local Only)
@@ -78,21 +79,38 @@ cd frontend-vite && npm run dev
 - **Frontend**: http://localhost:3000
 - **API**: http://localhost:8000/api/
 - **Admin Panel**: http://localhost:8000/admin/
+- **Production Site**: https://futuregarage.net
 
 ## 📊 Features
 
 ### Frontend Pages
-- **Home**: Company introduction and services overview
-- **Tires**: All-season and winter tire catalog with dynamic filtering
-- **Services**: Auto repairs and car maintenance information
-- **Products**: LED headlights and rear view systems
-- **About**: Company information and contact details
-- **FAQ**: Frequently asked questions
+- **Home** (`/`): Company introduction and services overview
+- **Tires**: 
+  - All-season tires (`/all-season-tires`)
+  - Winter tires (`/winter-tires`)
+  - Tread patterns (`/tread-patterns`)
+- **Services**:
+  - Auto repairs (`/service-repair`)
+  - Car maintenance (`/service-maintenance`)
+- **Products**:
+  - LED headlights (`/product-lights`)
+  - Rear view systems (`/product-rear-view`)
+- **About** (`/about`): Company information and contact details
+- **FAQ** (`/faq`): Frequently asked questions
+- **Contact** (`/contact-location`): Location and contact information
 
 ### Backend API
 - **Tire Management**: CRUD operations for tire inventory
 - **Image Management**: Dynamic tire image uploads and retrieval
 - **Admin Interface**: Content management system
+
+### SEO Features
+- **Meta Tags**: Comprehensive SEO meta tags in index.html
+- **Open Graph**: Social media sharing optimization
+- **JSON-LD**: Structured data for search engines
+- **Sitemap**: XML sitemap at `/sitemap.xml`
+- **Robots.txt**: Search engine crawling instructions
+- **HTTPS**: SSL certificate with automatic HTTP to HTTPS redirect
 
 ## 🔧 Development
 
@@ -108,6 +126,11 @@ npm run dev
 # Production Build
 npm run build:prod
 
+# Local Static Files Collection (Optional)
+cd auto_garage
+python3 manage.py collectstatic --noinput --settings=auto_garage_project.settings.prod
+cd ..
+
 # Preview Production Build
 npm run preview
 ```
@@ -115,9 +138,10 @@ npm run preview
 ## 📦 Production Deployment
 
 ### Server Requirements
-- **Web Server**: Nginx (recommended)
+- **Web Server**: Nginx with SSL/TLS support
 - **WSGI Server**: Gunicorn
-- **Database**: SQLite3 (dev) 
+- **Database**: SQLite3
+- **SSL Certificate**: Required for HTTPS
 - **Process Manager**: systemd or PM2
 
 ### Initial Deployment (Aliyun Server)
@@ -167,6 +191,23 @@ vim .env  # Edit with production values
 tail -f logs/gunicorn_access.log
 tail -f logs/gunicorn_error.log
 ```
+
+### SEO & Search Engine Optimization
+
+#### Included SEO Features
+- **Comprehensive Meta Tags**: Title, description, keywords, author
+- **Open Graph Protocol**: Optimized for social media sharing
+- **JSON-LD Structured Data**: Business information for search engines
+- **XML Sitemap**: All pages indexed at `https://futuregarage.net/sitemap.xml`
+- **Robots.txt**: Search engine crawling guidelines
+- **HTTPS Enforcement**: Automatic HTTP to HTTPS redirect
+
+#### Submit to Search Engines
+1. **Google Search Console**: https://search.google.com/search-console/
+   - Add property: `futuregarage.net`
+   - Submit sitemap: `https://futuregarage.net/sitemap.xml`
+2. **Bing Webmaster Tools**: https://www.bing.com/webmasters/
+3. **Verify SEO**: Check `https://futuregarage.net/robots.txt`
 ## Tire Data
 - **winterTire**:
 https://docs.google.com/spreadsheets/d/1msRHnS3gKHN1IGNTzDeuursyrTKF4PXoWn_v9cnD-2U/edit?gid=1660833820#gid=1660833820
@@ -175,8 +216,11 @@ https://docs.google.com/spreadsheets/d/1K270MJUMYaFQhxAvObNoWePWZf6qRWBvpKeA53lM
 
 ## 📞 Contact
 
+- **Website**: https://futuregarage.net
 - **Facebook**: https://www.facebook.com/NAPASJ/
-- **Project Size**: ~16MB
+- **Address**: 529 Rothesay Ave, Saint John, NB E2J 2C6
+- **Phone**: +1-506-288-0999
+- **Hours**: Monday-Saturday 11:00-17:00
 - **Upload Date**: December 2025
 
 ---
@@ -199,6 +243,7 @@ FutureAutoGarage/
 │   ├── api/                    # REST API 应用
 │   ├── auto_garage_project/    # Django 配置
 │   ├── media/                  # 用户上传文件
+│   ├── staticfiles/            # 收集的静态文件
 │   └── manage.py              # Django 管理
 ├── frontend-vite/              # Vite React 前端
 │   ├── src/                    # 源代码（仅本地）
@@ -274,6 +319,14 @@ cd frontend-vite && npm run dev
 - **图片管理**: 动态轮胎图片上传和检索
 - **管理界面**: 内容管理系统
 
+### SEO 优化功能
+- **Meta 标签**: index.html 中包含完整的 SEO 元数据
+- **Open Graph**: 社交媒体分享优化
+- **JSON-LD**: 搜索引擎结构化数据
+- **网站地图**: XML sitemap 位于 `/sitemap.xml`
+- **Robots.txt**: 搜索引擎爬取指引
+- **HTTPS**: SSL 证书及自动 HTTP 到 HTTPS 重定向
+
 ## 🔧 开发
 
 ### 环境配置
@@ -288,6 +341,11 @@ npm run dev
 # 生产构建
 npm run build:prod
 
+# 本地收集静态文件（可选）
+cd auto_garage
+python3 manage.py collectstatic --noinput --settings=auto_garage_project.settings.prod
+cd ..
+
 # 预览生产构建
 npm run preview
 ```
@@ -295,9 +353,10 @@ npm run preview
 ## 📦 生产环境部署
 
 ### 服务器要求
-- **Web 服务器**: Nginx（推荐）
+- **Web 服务器**: Nginx 支持 SSL/TLS
 - **WSGI 服务器**: Gunicorn
 - **数据库**: SQLite3
+- **SSL 证书**: HTTPS 必需
 - **进程管理**: systemd 或 PM2
 
 ### 初始部署（阿里云服务器）
@@ -350,6 +409,9 @@ tail -f logs/gunicorn_error.log
 
 ## 📞 联系方式
 
+- **网站**: https://futuregarage.net
 - **Facebook**: https://www.facebook.com/NAPASJ/
-- **项目大小**: ~16MB
+- **地址**: 529 Rothesay Ave, Saint John, NB E2J 2C6
+- **电话**: +1-506-288-0999
+- **营业时间**: 周一至周六 11:00-17:00
 - **上传日期**: 2025年12月

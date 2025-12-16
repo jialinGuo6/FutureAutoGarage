@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://futuregarage.net/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /faq
+Allow: /contact-location
+Allow: /all-season-tires
+Allow: /winter-tires
+Allow: /service-repair
+Allow: /service-maintenance
+Allow: /product-lights
+Allow: /product-rear-view
